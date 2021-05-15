@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 
+	id：bean 的為一標示符相當於對象名
+	class：bean 對象對應的全限命名：包名＋類型
+	name：也是別名，可以同時取多個別名（用空格獲逗號分開）
+	scope：默認單例＝全局為一
+	 -->
+   <bean id="user" class="com.wong.pojo.User" name="n1, n2 nn, yy">
+   		<!-- 第一種：下標賦值 -->
+   		<!--  
+   		<constructor-arg index="0" value="constructor(wong)"></constructor-arg>
+   		-->
+   		<!-- 第二種：通過類型創建，不建議使用 -->
+   		<!--  
+		<constructor-arg type="java.lang.String" value="constructor2(wong)"></constructor-arg>
+       -->
+       <!--  默認：通過無參構造方法來創建
+       <property name="name" value="wong"/>
+       -->
+       <!-- 第三種： 參數名 -->
+       <constructor-arg name="name" value="constructor3(wong)"></constructor-arg>
+   </bean>
+   <!-- 別名：添加別名，就可以通過別名獲取到這個對象 （一對一）-->
+   <alias name="user" alias="user-alis"/>
+
+</beans>

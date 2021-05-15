@@ -1,0 +1,17 @@
+person:
+  name: wong${random.uuid} # 隨機uuid
+  age: ${random.int} # 隨機int
+  happy: false
+  birth: 2000/01/01
+  maps: {k1: v1,k2: v2}
+  hello: hehehe # if hello not exit --> hehehe_旺財
+  lists:
+    - code
+    - girl
+    - music
+  dog:
+    name: ${person.hello:other}_旺財 # if hello not exit --> other_旺財
+    age: 3
+    
+#開啟springboot的調試類
+debug: true

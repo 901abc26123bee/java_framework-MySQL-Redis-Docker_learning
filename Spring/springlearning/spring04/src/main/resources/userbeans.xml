@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:p="http://www.springframework.org/schema/p"
+      xmlns:c="http://www.springframework.org/schema/c"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+       
+       <!--P(屬性: properties)命名空間 , 屬性依然要設置set方法-->
+   		<bean id="userp" class="com.wong.pojo.User" p:name="atom" p:age="18"/>
+   		
+   		<!--C(構造: Constructor)命名空間 , 屬性依然要設置set方法-->
+ 		<bean id="userc" class="com.wong.pojo.User" c:name="lisa" c:age="22" scope="prototype"/>
+</beans>

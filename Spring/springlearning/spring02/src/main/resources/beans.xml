@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <!--bean就是java對象 , 由Spring創建和管理-->
+   <!--
+		使用pring來創建對象，這些都稱為bean
+		
+		類型 變量名 = new 類型()
+		Hello hello = new Hello()
+
+		bean = new 對象	
+			id = 變量名
+		class = new 的對象
+		property ＝ 給對象中的屬性(name)設值(value)
+	-->
+   <bean id="hello" class="com.wong.pojo.Hello">
+       <property name="name" value="Spring"/>
+   </bean>
+
+</beans>

@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    username: root
+    password: 12345678
+    # 加入時區報錯了，就增加一個時區的配置就OK了serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/mybatis?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=utf8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource # 自定義數據源
+    #Spring Boot 默認是不注入這些屬性值的，需要自己綁定
+    #druid 數據源專有配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    
+    #配置監控統計攔截的filters，stat:監控統計、log4j：日誌記錄、wall：防禦sql注入
+    #如果允許時報錯 java.lang.ClassNotFoundException: org.apache.log4j.Priority
+    #則導入 log4j 依賴即可，Maven 地址：https://mvnrepository.com/artifact/log4j/log4j
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500

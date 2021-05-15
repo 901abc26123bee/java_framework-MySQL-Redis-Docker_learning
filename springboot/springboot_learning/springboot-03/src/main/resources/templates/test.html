@@ -1,0 +1,26 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>測試頁面</h1>
+<!--th:text就是將div中的內容設置為它指定的值，和之前學習的Vue一樣-->
+
+<div th:text="${msg}"></div>
+
+  <!--不轉義-->
+<div th:utext="${msg}"></div>
+
+<!--遍歷數據-->
+<!--th:each每次遍歷都會生成當前這個標籤：官網#9-->
+<h4 th:each="user :${users}" th:text="${user}"></h4>
+
+<h4>
+    <!--行內寫法：官網#12-->
+    <span th:each="user:${users}">[[${user}]]</span>
+</h4>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <!--bean就是java對象( = new java對象) , 由Spring創建和管理-->
+   <bean id="mysqlImpl" class="com.wong.dao.UserDaoMySqlImpl">
+   </bean>
+   <bean id="oracleImpl" class="com.wong.dao.UserDaoOracleImpl">
+   </bean>
+   <!--注意: 這裡的name並不是屬性 , 而是set方法後面的那部分 , 首字母小寫-->
+       <!--引用另外一個bean , 不是用value 而是用 ref-->
+       <!-- 
+		ref : 引用 Spring 容器中創建好的對象 bean 
+		value : 具體的值，基本數據類型	
+		-->
+   <bean id="UserServiceImpl" class="com.wong.service.UserServiceImpl">
+       <property name="userDao" ref="mysqlImpl"/>
+   </bean>
+	
+</beans>
