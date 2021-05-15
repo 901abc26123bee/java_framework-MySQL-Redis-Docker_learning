@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+       "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wong.mybatis.dao.UserMapper"><!-- 綁定接口 -->
+<!-- id = UserDaoImpl implements UserDao 時需重寫的方法 -->
+	<select id="getUserList" resultType="com.wong.mybatis.pojo.User"><!-- 返回類型 -->
+  		select * from mybatis.user
+ 	</select>
+ 	
+ 	<select id="getUserById" parameterType="int" resultType="com.wong.mybatis.pojo.User"><!-- 返回類型 -->
+  		select * from mybatis.user where id = #{id}
+ 	</select>
+
+ 	<!-- 對象中的屬性，可以直接取出來 -->
+ 	<insert id="addUser" parameterType="com.wong.mybatis.pojo.User">
+ 		insert into mybatis.user (id, name, pwd) values (#{id}, #{name}, #{pwd});
+ 	</insert>
+ 	<!-- 萬能Map 
+ 		傳入 map 的 key -->
+ 	<insert id="addUser2" parameterType="com.wong.mybatis.pojo.User">
+ 		insert into mybatis.user (id, name, pwd) values (#{userid}, #{username}, #{userpwd});
+ 	</insert>
+ 	
+ 	<update id="updateUser" parameterType="com.wong.mybatis.pojo.User">
+ 		update mybatis.user set name=#{name}, pwd=#{pwd} where id=#{id};
+ 	</update>
+ 	<!-- when prarmeter only one, parameterType="int" can skip dont write -->
+ 	<delete id="deleteUser" parameterType="int">
+	 	delete from mybatis.user where id = #{id}
+	</delete>
+	<!-- 第2种：在sql语句中拼接通配符，会引起sql注入
+    	select * from foo where bar like "%"#{value}"%"
+	 -->
+	<select id="getUserLike" resultType="com.wong.mybatis.pojo.User">
+	 	select * from mybatis.user where name like #{value}
+	</select>
+</mapper>

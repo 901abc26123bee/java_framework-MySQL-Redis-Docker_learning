@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+       PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+       "http://mybatis.org/dtd/mybatis-3-config.dtd">
+       <!-- MyBatis核心配置文件 -->
+<configuration>
+	<!--导入properties文件(xml中，所有標籤都可以規定其順許)-->
+   <properties resource="db.properties"/>
+   
+   <settings>
+   		<!-- 標準日誌工廠實現 -->
+   		<setting name="logImpl" value="STDOUT_LOGGING"/>
+   		<!-- 1、开启全局缓存,二级缓存也叫全局缓存 
+   			基于namespace级别的缓存，一个名称空间，对应一个二级缓存；
+			工作机制
+			    一个会话查询一条数据，这个数据就会被放在当前会话的一级缓存中；
+			    如果当前会话关闭了，这个会话对应的一级缓存就没了；但是我们想要的是，会话关闭了，一级缓存中的数据被保存到二级缓存中；
+			    新的会话查询信息，就可以从二级缓存中获取内容；
+			    不同的mapper查出的数据会放在自己对应的缓存（map）中；
+   		-->
+   		<setting name="cacheEnabled" value="true"/>
+   </settings>
+
+   <typeAliases>
+	   <!-- 
+	   批量别名定义,指定包名，mybatis自动扫描包中的po类，自动定义别名，
+	   别名是类名(首字母大写或小写都可以,一般用小写) 
+	   -->
+   		<package name="com.wong.mybatis.pojo"/>
+   </typeAliases>
+	
+   <environments default="development">
+       <environment id="development">
+           <transactionManager type="JDBC"/>
+           <dataSource type="POOLED">
+               <property name="driver" value="${driver}"/>
+               <property name="url" value="${url}"/>
+               <property name="username" value="${username}"/>
+               <property name="password" value="${password}"/>
+           </dataSource>
+       </environment>
+   </environments>
+   
+   <mappers>
+   	<mapper class="com.wong.mybatis.dao.UserMapper"/>
+   </mappers>
+   
+</configuration>

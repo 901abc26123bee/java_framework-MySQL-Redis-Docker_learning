@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+       PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+       "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wong.mybatis.dao.UserMapper">
+<!-- 
+	基于namespace级别的缓存，一个名称空间，对应一个二级缓存；
+	不同的mapper查出的数据会放在自己对应的缓存（map）中； 
+-->
+	<!-- 
+	在 Usermapper.xml 中使用二级缓存，不使用任何自定義參數
+	<cache/>
+	-->
+	<!-- 
+	在 Usermapper.xml 中使用二级缓存，並自定義參數
+	这个更高级的配置创建了一个 FIFO 缓存，
+	每隔 60 秒刷新，最多可以存储结果对象或列表的 512 个引用，
+	而且返回的对象被认为是只读的，因此对它们进行修改可能会在不同线程中的调用者产生冲突。
+	-->
+	<cache
+	 eviction="FIFO"
+	 flushInterval="60000"
+	 size="512"
+	 readOnly="true"/>
+	 
+	<select id="queryUserById" parameterType="_int" resultType="user">
+		select * from user where id=#{id}
+	</select>
+	
+	<update id="updateUser" parameterType="map">
+		update user set name=#{name}, pwd=#{pwd} where id=#{id};
+	</update>
+</mapper>

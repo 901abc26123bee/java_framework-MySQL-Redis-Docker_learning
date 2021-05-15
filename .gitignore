@@ -7,6 +7,10 @@ target
 # Package Files #
 *.jar
 *.war
+*.zip
+*.tar
+*.tar.gz
+target
 *.ear
 
 *.iml
@@ -18,3 +22,9 @@ datanucleus.log
 *.log
 data-mapper/src/main/resources/log4j.xml
 .hprof
+
+# eclipse ignore
+.settings/
+.project
+.classpath
+
